@@ -1,5 +1,9 @@
 # Storybook MCP Server
 
+> [!IMPORTANT]
+> This MCP is a temporary workaround while we have not updated our storybook to v10 which supports the 
+> official @storybook/mcp and @storybook/addon-mcp packages.
+
 ![Node CI](https://github.com/mcpland/storybook-mcp/workflows/Node%20CI/badge.svg)
 [![npm](https://img.shields.io/npm/v/storybook-mcp.svg)](https://www.npmjs.com/package/storybook-mcp)
 ![license](https://img.shields.io/npm/l/storybook-mcp)
