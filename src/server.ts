@@ -125,8 +125,7 @@ export class StorybookMCPServer {
 
           if (this.customTools.length > 0) {
             console.error(
-              `Successfully loaded ${
-                this.customTools.length
+              `Successfully loaded ${this.customTools.length
               } custom tools: ${this.customTools.map((t) => t.name).join(", ")}`
             );
           }
@@ -254,8 +253,7 @@ export class StorybookMCPServer {
       };
     } catch (error) {
       throw new Error(
-        `Failed to get component list: ${
-          error instanceof Error ? error.message : String(error)
+        `Failed to get component list: ${error instanceof Error ? error.message : String(error)
         }`
       );
     }
@@ -286,15 +284,15 @@ export class StorybookMCPServer {
             const componentUrl =
               data.v === 3
                 ? getComponentPropsDocUrlV3(
-                    data,
-                    componentName,
-                    this.storybookUrl
-                  )
+                  data,
+                  componentName,
+                  this.storybookUrl
+                )
                 : getComponentPropsDocUrlV5(
-                    data,
-                    componentName,
-                    this.storybookUrl
-                  );
+                  data,
+                  componentName,
+                  this.storybookUrl
+                );
 
             if (!componentUrl) {
               errors[
@@ -309,34 +307,32 @@ export class StorybookMCPServer {
               await page.goto(componentUrl, { waitUntil: "networkidle" });
 
               // wait for table to load
-              await page.waitForSelector("table.docblock-argstable", {
+              await page.waitForSelector("h2 ~ ul, h3 ~ ul, h4 ~ ul", {
                 timeout: 10000,
               });
 
-              // get props table HTML
-              const propsTableHTML = await page.$eval(
-                "table.docblock-argstable",
-                (element: HTMLElement) => element.outerHTML
+              // get props list
+              const propsTableHTML = await page.$$eval(
+                "h2 ~ ul, h3 ~ ul, h4 ~ ul",
+                (elements: HTMLElement[]) => `<div>${elements.map(e => e.outerHTML).join('')}</div>`
               );
 
               results[componentName] = propsTableHTML;
             } catch (pageError) {
               errors[
                 componentName
-              ] = `Failed to load component page or find props table: ${
-                pageError instanceof Error
-                  ? pageError.message
-                  : String(pageError)
+              ] = `Failed to load component page or find props table: ${pageError instanceof Error
+                ? pageError.message
+                : String(pageError)
               }`;
             } finally {
               await page.close();
             }
           } catch (componentError) {
-            errors[componentName] = `Failed to get component URL: ${
-              componentError instanceof Error
-                ? componentError.message
-                : String(componentError)
-            }`;
+            errors[componentName] = `Failed to get component URL: ${componentError instanceof Error
+              ? componentError.message
+              : String(componentError)
+              }`;
           }
         }
       } finally {
@@ -365,8 +361,7 @@ export class StorybookMCPServer {
       };
     } catch (error) {
       throw new Error(
-        `Failed to get components props: ${
-          error instanceof Error ? error.message : String(error)
+        `Failed to get components props: ${error instanceof Error ? error.message : String(error)
         }`
       );
     }
@@ -398,15 +393,14 @@ export class StorybookMCPServer {
                 text: Array.isArray(result)
                   ? result.join("\n")
                   : typeof result === "object"
-                  ? JSON.stringify(result, null, 2)
-                  : String(result),
+                    ? JSON.stringify(result, null, 2)
+                    : String(result),
               },
             ],
           };
         } catch (pageError) {
           throw new Error(
-            `Failed to execute custom tool "${customTool.name}": ${
-              pageError instanceof Error ? pageError.message : String(pageError)
+            `Failed to execute custom tool "${customTool.name}": ${pageError instanceof Error ? pageError.message : String(pageError)
             }`
           );
         } finally {
@@ -417,8 +411,7 @@ export class StorybookMCPServer {
       }
     } catch (error) {
       throw new Error(
-        `Failed to execute custom tool "${customTool.name}": ${
-          error instanceof Error ? error.message : String(error)
+        `Failed to execute custom tool "${customTool.name}": ${error instanceof Error ? error.message : String(error)
         }`
       );
     }
