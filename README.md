@@ -2,17 +2,8 @@
 
 > [!IMPORTANT]
 > This MCP is a temporary workaround while we have not updated our storybook to v10 which supports the 
-> official @storybook/mcp and @storybook/addon-mcp packages.
-
-![Node CI](https://github.com/mcpland/storybook-mcp/workflows/Node%20CI/badge.svg)
-[![npm](https://img.shields.io/npm/v/storybook-mcp.svg)](https://www.npmjs.com/package/storybook-mcp)
-![license](https://img.shields.io/npm/l/storybook-mcp)
-
-A Model Context Protocol (MCP) server that provides tools to interact with Storybook documentation and component information.
-
-<a href="https://glama.ai/mcp/servers/@mcpland/storybook-mcp">
-  <img width="380" height="200" src="https://glama.ai/mcp/servers/@mcpland/storybook-mcp/badge" alt="storybook-mcp MCP server" />
-</a>
+> official `@storybook/mcp` and `@storybook/addon-mcp` packages. Use this alongside `@reaphq/design` found
+> at https://design.reap.global/index.json to stand up a local MCP server for your agents.
 
 ## Features
 
