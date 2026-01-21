@@ -1,6 +1,6 @@
 {
   "name": "@reaphq/design-mcp",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A Model Context Protocol (MCP) server for @reaphq/design",
   "main": "./dist/index.js",
   "type": "module",
