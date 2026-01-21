@@ -307,13 +307,13 @@ export class StorybookMCPServer {
               await page.goto(componentUrl, { waitUntil: "networkidle" });
 
               // wait for table to load
-              await page.waitForSelector("h2 ~ ul, h3 ~ ul, h4 ~ ul", {
+              await page.waitForSelector("h2 ~ table, h3 ~ table, h4 ~ table", {
                 timeout: 10000,
               });
 
               // get props list
               const propsTableHTML = await page.$$eval(
-                "h2 ~ ul, h3 ~ ul, h4 ~ ul",
+                "h2 ~ table, h3 ~ table, h4 ~ table",
                 (elements: HTMLElement[]) => `<div>${elements.map(e => e.outerHTML).join('')}</div>`
               );
 
